@@ -1,0 +1,18 @@
+version: '3.0'
+
+services:
+  predictor:
+    build:
+      context: .
+    container_name: "predict-api"
+    restart: always
+    environment:
+      - AWS_PROFILE
+      - VERSION
+      - AWS_BUCKET
+    ports:
+      - 8080:8080
+    volumes:
+      - ./ml:/app/ml
+      - ./predictor:/app/predictor
+      - $HOME/.aws/credentials:/root/.aws/credentials:ro

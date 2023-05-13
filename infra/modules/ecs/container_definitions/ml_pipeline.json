@@ -1,0 +1,37 @@
+[
+    {
+        "name": "ml-pipeline",
+        "image": "${ml_pipeline_ecr_uri}:latest",
+        "cpu": 1024,
+        "memory": 2048,
+        "portMappings": [],
+        "essential": true,
+        "command": [
+            "python",
+            "-m",
+            "ml.main"
+        ],
+        "environment": [
+            {
+                "name": "VERSION",
+                "value": "2023-05-11"
+            },
+            {
+                "name": "MODEL",
+                "value": "sgd_classifier_ctr_model"
+            },
+            {
+                "name": "AWS_BUCKET",
+                "value": "${bucket}"
+            }
+        ],
+        "logConfiguration": {
+            "logDriver": "awslogs",
+            "options": {
+                "awslogs-create-group": "true",
+                "awslogs-group": "/ecs/mlops-handson-ml-pipeline",
+                "awslogs-stream-prefix": "ecs"
+            }
+        }
+    }
+]

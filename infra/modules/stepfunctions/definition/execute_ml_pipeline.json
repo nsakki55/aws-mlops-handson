@@ -1,0 +1,27 @@
+{
+  "Comment": "ml pipeline execution definition",
+  "StartAt": "ECS RunTask",
+  "States": {
+    "ECS RunTask": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::ecs:runTask",
+      "Parameters": {
+        "LaunchType": "FARGATE",
+        "Cluster": "${cluster_arn}",
+        "TaskDefinition": "${task_definition_arn}",
+        "NetworkConfiguration": {
+          "AwsvpcConfiguration": {
+            "AssignPublicIp": "DISABLED",
+            "SecurityGroups": [
+              "${security_group}"
+            ],
+            "Subnets": [
+              "${subnet}"
+            ]
+          }
+        }
+      },
+      "End": true
+    }
+  }
+}
