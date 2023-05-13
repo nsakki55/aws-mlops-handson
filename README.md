@@ -1,6 +1,7 @@
 # AWS MLOps Handson
 ## Architecture
 AWS Infra Architecture made by the handson.
+
 ### ML Pipeline
 ![ml_pipeline](./imgs/ml_pipeline_architecture.png)
 
@@ -35,7 +36,6 @@ $ cp .env.example .env
 $ direnv allow .
 ```
 
-## Usage
 ### Create AWS Resources
 move current directory to `infra` 
 ```bash
@@ -55,8 +55,7 @@ $ terraform init
 $ terraform -var-file terraform.tfvars
 ```
 
-
-### Local Command
+## Usage
 Build ML Pipeline
 ```bash
 $ make build-ml
