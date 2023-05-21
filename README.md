@@ -15,6 +15,8 @@ AWS Infra Architecture made by the handson.
 | [Poetry](https://python-poetry.org/docs/#installation)           | curl -sSL https://install.python-poetry.org &#x7C; python3 - |
 | [direnv](https://formulae.brew.sh/formula/direnv)           | `brew install direnv`      |
 | [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli#install-terraform)    | `brew install terraform`   |
+| [Docker](https://docs.docker.com/desktop/install/mac-install/) | install via dmg |
+| [awscli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-installjkkkkj.html) | `curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"` |
 
 ## Setup
 ### Install Python Dependencies
@@ -35,6 +37,17 @@ Use `direnv` to configure environment variable
 $ cp .env.example .env
 $ direnv allow .
 ```
+Set your environment variable setting
+```bash
+AWS_REGION=
+AWS_ACCOUNT_ID=
+AWS_PROFILE=
+AWS_BUCKET=
+AWS_ALB_DNS=
+USER_NAME=
+VERSION=2023-05-11
+MODEL=sgd_classifier_ctr_model
+```
 
 ### Create AWS Resources
 move current directory to `infra` 
@@ -43,16 +56,21 @@ $ cd infra
 ```
 
 Use terraform to create aws resources.   
-Set your aws resource values in vars.tfvars
-```bash
-aws_region="{your-aws-region}"         # e.g| ap-northeast-1
-aws_profile="{your-aws-profile}"       # e.g| default
-aws_account_id="{your-aws-account-id}" # e.g| 0123456789101
-```
 Apply terraform
 ```bash
 $ terraform init
-$ terraform -var-file terraform.tfvars
+$ terraform apply
+```
+
+### Prepare train data
+unzip train data
+```bash
+$ unzip train_data.zip
+```
+
+upload train data to S3
+```bash
+$ aws s3 mv train_data s3://$AWS_BUCKET
 ```
 
 ## Usage

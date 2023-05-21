@@ -24,9 +24,9 @@ pytest = "^7.3.1"
 
 
 [tool.poetry.group.dev.dependencies]
-notebook = "^6.5.4"
 pysen = "^0.10.4"
 taskipy = "^1.10.4"
+jupyterlab = "^4.0.0"
 
 [tool.taskipy.tasks]
 format = "pysen run format"

@@ -1,3 +1,6 @@
+.PHONY: all
+all: help
+
 ECR_REPOSITORY := $(AWS_ACCOUNT_ID).dkr.ecr.ap-northeast-1.amazonaws.com
 DOCKER_TAG := latest
 DOCKER_PREDICTOR_IMAGE := ${USER_NAME}-mlops-handson/predict-api
@@ -101,8 +104,10 @@ predict-ecs: ## Request prediction to ECS
 healthcheck: ## Request health check
 	curl -X 'GET' 'http://localhost:${PORT}/healthcheck'
 
+check-scale: ## Request many times to check auto scaling
+	hey -n 10000 -c 100 "http://${AWS_ALB_DNS}:${PORT}/healthcheck"
+
 help: ## Show options
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
 		awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
 
-.PHONY: help build
