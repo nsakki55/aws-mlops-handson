@@ -54,13 +54,15 @@ class SGDClassifierCTROptunaModel(BaseModel):
 
     def save(self, s3_bucket: str, s3_key: str, file_path: str) -> str:
         logger.info(f"Save {self.name} as {file_path}.")
-        pickle.dump(self.model, open(file_path, "wb"))
+        with open(file_path, "wb") as f:
+            pickle.dump(self.model, f)
         upload_to_s3(s3_bucket=s3_bucket, s3_key=s3_key, file_path=file_path)
         return file_path
 
     def load(self, file_path: str) -> None:
         logger.info(f"Load {self.name} as {file_path}.")
-        self.model = pickle.load(open(file_path, "rb"))
+        with open(file_path, "rb") as f:
+            self.model = pickle.load(f)
 
     def predict(self, input: str) -> float:
         return float(self.model.predict_proba(input)[0][1])
