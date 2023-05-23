@@ -1,6 +1,25 @@
 # AWS MLOps Handson
-## Architecture
-AWS Infra Architecture made by the handson.
+This repository is designed to provide a comprehensive ML infrastructure for CTR (Click-Through Rate) prediction.  
+With a focus on AWS services, this repository offer practical learning experience for MLOps.
+
+## Key Features
+### Python Development Environment  
+We guide you through setting up a Python development environment that ensures code quality and maintainability.   
+This environment is carefully configured to enable efficient development practices and facilitate collaboration.
+
+### Train Pipeline
+This repository includes the implementation of a training pipeline.   
+This pipeline covers the stages, including data preprocessing, model training, and evaluation.   
+
+### Prediction Server
+This repository provides an implementation of a prediction server that serves predictions based on your trained CTR prediction model.   
+
+### AWS Deployment
+To showcase industry-standard practices, this repository guide you in deploying the training pipeline and inference server on AWS. 
+
+
+## AWS Infra Architecture
+AWS Infra Architecture made by this repository.
 
 ### ML Pipeline
 ![ml_pipeline](./imgs/ml_pipeline_architecture.png)
@@ -72,6 +91,17 @@ upload train data to S3
 ```bash
 $ aws s3 mv train_data s3://$AWS_BUCKET
 ```
+
+## Code static analysis tool
+| Tool                   | Usage              |
+|----------------------------|----------------------------|
+| [isort](https://pycqa.github.io/isort/)             | library import statement check     |
+| [black](https://pypi.org/project/black/)           | format code style  |
+| [flake8](https://flake8.pycqa.org/en/latest/)           | code quality check      |
+| [mypy](https://mypy.readthedocs.io/en/stable/)    |  static type checking |
+| [pysen](https://github.com/pfnet/pysen)    | manage static analysis tool  |
+
+
 
 ## Usage
 Build ML Pipeline
