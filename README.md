@@ -1,6 +1,7 @@
 # AWS MLOps Handson
 This repository is designed to provide a comprehensive ML infrastructure for CTR (Click-Through Rate) prediction.  
-With a focus on AWS services, this repository offer practical learning experience for MLOps.
+With a focus on AWS services, this repository offer practical learning experience for MLOps.  
+Slide[japanese]: https://speakerdeck.com/nsakki55/cyberagent-aishi-ye-ben-bu-mlopsyan-xiu-ying-yong-bian
 
 ## Key Features
 ### Python Development Environment  
